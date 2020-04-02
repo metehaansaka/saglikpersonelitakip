@@ -1,12 +1,56 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>     
+        <title>Sağlık Personeli Takip Programı</title>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
     </h:head>
     <h:body>
-        Hello from Facelets
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Menü</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link mr-3" href="#">Anasayfa<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sağlık Personelleri</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <img style="margin-left: 290px;" src="resources/img/banner.jpg"></img>
+                </div>
+            </div>
+            <div class="row">
+                <div style="text-align: center;" class="col-md-12">
+                    <h1 class="mb-4" style="color: #563D7C;">Program Hakkında Bilgi</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eget posuere nibh. Mauris at ante sed nisi feugiat finibus. Phasellus aliquam ante sit amet leo pulvinar mollis. Quisque quis dolor diam. Phasellus ante erat, laoreet eget ligula eget, ornare ultricies odio. Morbi ut lobortis turpis. Nam sodales molestie felis, id condimentum urna vehicula a. Sed cursus elit augue, id mattis felis auctor bibendum. Sed viverra massa ut ornare tristique. Maecenas maximus ipsum vitae nunc convallis vestibulum. Duis mauris enim, ultricies sed lorem sed, ornare pellentesque mi. Maecenas at interdum tortor. Integer sit amet felis eget neque sollicitudin faucibus a in nibh.
+
+                        Quisque consectetur id felis vel rhoncus. Vestibulum sed ex mattis, vehicula orci eget, porta nisi. Donec congue maximus est ac iaculis. Curabitur molestie at tellus eu dapibus. Fusce sit amet ante vitae nisl tincidunt dictum ac sit amet quam. Maecenas eget enim id ex pharetra sagittis ac in tellus. Curabitur eget magna lobortis, aliquet nisi sagittis, imperdiet ipsum. Nulla facilisi. Ut id dapibus lorem, et imperdiet ipsum. Proin dignissim porttitor scelerisque. Duis sed neque dui. Fusce at nunc eget sapien porta porttitor sed ut ipsum. Suspendisse posuere sed felis id cursus.
+
+                        Donec vulputate neque quam. Sed mi lacus, vehicula sed magna ac, gravida ullamcorper nulla. Fusce eget efficitur leo, nec maximus justo. Proin eu magna non nunc vehicula pulvinar. Vivamus blandit lectus a felis eleifend placerat. Sed eget metus vulputate diam lobortis tincidunt. Donec tellus lorem, auctor ac rhoncus eu, malesuada ac elit. Donec dictum rutrum pellentesque. Etiam mi dui, lobortis vitae rhoncus et, placerat sed nibh. Cras semper varius maximus. Suspendisse et sollicitudin libero, ac malesuada nisi. Vivamus pulvinar nisl non iaculis mollis.
+
+                        Quisque justo tellus, consequat vel aliquet efficitur, euismod sed purus. Donec vulputate, est et euismod consequat, lacus nisi tempor felis, in luctus sem mi tincidunt mauris. In molestie eros nunc, in suscipit orci mattis ut. Duis cursus ipsum urna. Cras venenatis dapibus dolor sed cursus. Aenean ac tempus mauris. Nulla facilisi. Aenean sit amet suscipit sapien, sit amet imperdiet enim. Suspendisse lacus dui, vulputate a sapien a, bibendum porttitor turpis. Phasellus faucibus tincidunt magna, quis finibus nisl consectetur eget.
+
+                        Phasellus sed diam odio. Donec a ipsum ex. Fusce a finibus quam. Morbi erat elit, scelerisque eu lacinia in, porttitor eu nisl. Sed ac pretium enim, non ullamcorper eros. Morbi quis tincidunt ipsum, sit amet pulvinar nibh. Curabitur nec enim commodo, fringilla metus vitae, imperdiet ligula. Quisque quis erat consectetur, suscipit nisl vitae, fringilla felis. Suspendisse semper rhoncus diam, quis commodo tortor vestibulum auctor. Aliquam arcu nisi, hendrerit nec dignissim vitae, efficitur quis felis. Etiam a lacus efficitur, feugiat mi quis, cursus justo. Nam posuere augue in dolor maximus, at vulputate urna consectetur. Morbi euismod ut risus ac viverra. Integer egestas sapien nisl, eu vestibulum enim blandit ut. Sed eget iaculis libero.
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </h:body>
 </html>
 
