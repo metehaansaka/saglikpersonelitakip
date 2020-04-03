@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Menü</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h:form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <h:commandLink styleClass="nav-link mr-3" action="index" value="Anasayfa"/>
+
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="personeller" value="Personeller"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-md-8">
+                <h:dataTable class="table table-striped ml-5 mt-3" value="#{personellerController.pplist}" var="pplist">
+                    <h:column>
+                        <f:facet name="header">Ad Soyad</f:facet>
+                            #{pplist.persone_adsoyad}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Branş</f:facet>
+                            #{pplist.personel_brans}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Cinsiyet</f:facet>
+                            #{pplist.personel_cinsiyet}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Telefon</f:facet>
+                            #{pplist.personel_telefon}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Müsait Saatleri</f:facet>
+                        <h:form>
+                            <h:commandLink styleClass="btn btn-info btn-sm" action="bossaatler" value="GÖR"/>
+                        </h:form>
+                    </h:column>
+
+                </h:dataTable>
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -17,11 +17,11 @@ public class bossaatController implements Serializable{
 
     public bossaatController() {
         this.saatlist = new ArrayList();
-        saatDao = new bossaatlerDAO();
+        this.saatDao = new bossaatlerDAO();
     }
 
     public List<bossaatler> getSaatlist() {
-        this.saatlist = this.getSaatDao().getBossaatler();
+        this.saatlist = this.getSaatDao().getBossaatlerr();
         return saatlist;
     }
 

@@ -16,14 +16,17 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link mr-3" href="#">Anasayfa<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="bossaatler.xhtml">Sağlık Personelleri</a>
-                        </li>
-                    </ul>
+                    <h:form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <h:commandLink styleClass="nav-link mr-3" action="index" value="Anasayfa"/>
+
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="personeller" value="Personeller"/>
+                            </li>
+                        </ul>
+                    </h:form>
                 </div>
             </div>
         </nav>
@@ -54,6 +57,8 @@
 
             </div>
         </div>
+
+
     </h:body>
 </html>
 
