@@ -19,13 +19,20 @@ import javax.inject.Named;
  */
 @Named
 @SessionScoped
-public class personellerController implements Serializable{
+public class personellerController implements Serializable {
+
     private List<personeller> pplist;
     private personellerDAO pdao;
+    private personeller personel;
 
-    public personellerController() {
-        this.pplist = new ArrayList();
-        pdao = new personellerDAO();
+    public String delete(personeller p) {
+        this.getPdao().delete(p);
+        return "personeller";
+    }
+
+    public String create() {
+        this.getPdao().insert(this.personel);
+        return "personeller";
     }
 
     public List<personeller> getPplist() {
@@ -38,11 +45,25 @@ public class personellerController implements Serializable{
     }
 
     public personellerDAO getPdao() {
+        if (this.pdao == null) {
+            this.pdao = new personellerDAO();
+        }
         return pdao;
     }
 
     public void setPdao(personellerDAO pdao) {
         this.pdao = pdao;
     }
-    
+
+    public personeller getPersonel() {
+        if (this.personel == null) {
+            this.personel = new personeller();
+        }
+        return personel;
+    }
+
+    public void setPersonel(personeller personel) {
+        this.personel = personel;
+    }
+
 }

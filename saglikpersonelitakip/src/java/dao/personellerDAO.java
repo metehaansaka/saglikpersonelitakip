@@ -21,23 +21,47 @@ import util.DBConnection;
  * @author Metehan
  */
 public class personellerDAO {
-    public List<personeller> getPersonell(){
-        List<personeller> plist= new ArrayList();
+
+    public List<personeller> getPersonell() {
+        List<personeller> plist = new ArrayList();
         DBConnection db = new DBConnection();
         Connection c = db.connect();
-        
+
         try {
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery("Select * from personeller");
-            while(rs.next()){
-                personeller p = new personeller(rs.getString("personel_adsoyad"),rs.getString("personel_telefon"),
-                rs.getString("personel_cinsiyet"),rs.getString("personel_brans"));
+            while (rs.next()) {
+                personeller p = new personeller(rs.getInt("personel_id"), rs.getString("personel_adsoyad"), rs.getString("personel_telefon"),
+                        rs.getString("personel_cinsiyet"), rs.getString("personel_brans"));
                 plist.add(p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return plist;        
+
+        return plist;
+    }
+
+    public void insert(personeller personel) {
+        DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try {
+            Statement st = c.createStatement();
+            st.executeUpdate("insert into personeller (personel_adsoyad,personel_telefon,personel_cinsiyet,personel_brans)"
+                    + " values ('" + personel.getPersone_adsoyad() + "','" + personel.getPersonel_telefon() + "','" + personel.getPersonel_cinsiyet() + "','" + personel.getPersonel_brans() + "')");
+        } catch (SQLException ex) {
+            Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void delete(personeller p) {
+        DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try {
+            Statement st = c.createStatement();
+            st.executeUpdate("delete from personeller where personel_id=" + p.getPersonel_id());
+        } catch (SQLException ex) {
+            Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

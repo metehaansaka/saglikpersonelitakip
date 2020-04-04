@@ -10,31 +10,35 @@ package entity;
  * @author Metehan
  */
 public class personeller {
-    private String personel_adsoyad;
+
+    private int personel_id;
+    private String persone_adsoyad;
     private String personel_telefon;
     private String personel_cinsiyet;
     private String personel_brans;
 
     @Override
     public String toString() {
-        return "personeller{" + "persone_adsoyad=" + personel_adsoyad + ", personel_telefon=" + personel_telefon + ", personel_cinsiyet=" + personel_cinsiyet + ", personel_brans=" + personel_brans + '}';
+        return "personeller{" + "personel_id=" + personel_id + ", persone_adsoyad=" + persone_adsoyad + ", personel_telefon=" + personel_telefon + ", personel_cinsiyet=" + personel_cinsiyet + ", personel_brans=" + personel_brans + '}';
     }
 
-    
-    public personeller(String persone_adsoyad, String personel_telefon, String personel_cinsiyet, String personel_brans) {
-        this.personel_adsoyad = persone_adsoyad;
+    public personeller() {
+    }
+
+    public personeller(int personel_id, String persone_adsoyad, String personel_telefon, String personel_cinsiyet, String personel_brans) {
+        this.personel_id = personel_id;
+        this.persone_adsoyad = persone_adsoyad;
         this.personel_telefon = personel_telefon;
         this.personel_cinsiyet = personel_cinsiyet;
         this.personel_brans = personel_brans;
     }
 
-    
     public String getPersone_adsoyad() {
-        return personel_adsoyad;
+        return persone_adsoyad;
     }
 
     public void setPersone_adsoyad(String persone_adsoyad) {
-        this.personel_adsoyad = persone_adsoyad;
+        this.persone_adsoyad = persone_adsoyad;
     }
 
     public String getPersonel_telefon() {
@@ -60,5 +64,13 @@ public class personeller {
     public void setPersonel_brans(String personel_brans) {
         this.personel_brans = personel_brans;
     }
-    
+
+    public int getPersonel_id() {
+        return personel_id;
+    }
+
+    public void setPersonel_id(int personel_id) {
+        this.personel_id = personel_id;
+    }
+
 }
