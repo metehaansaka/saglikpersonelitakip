@@ -14,14 +14,13 @@ import javax.inject.Named;
 public class bossaatController implements Serializable{
     private List<bossaatler> saatlist;
     private bossaatlerDAO saatDao;
-
-    public bossaatController() {
-        this.saatlist = new ArrayList();
-        this.saatDao = new bossaatlerDAO();
+    
+    public String listele(int a){
+        this.saatlist = this.getSaatDao().getBossaatlerr(a);
+        return "bossaatler";
     }
 
     public List<bossaatler> getSaatlist() {
-        this.saatlist = this.getSaatDao().getBossaatlerr();
         return saatlist;
     }
 
@@ -30,6 +29,9 @@ public class bossaatController implements Serializable{
     }
 
     public bossaatlerDAO getSaatDao() {
+        if (this.saatDao==null) {
+            this.saatDao=new bossaatlerDAO();
+        }
         return saatDao;
     }
 

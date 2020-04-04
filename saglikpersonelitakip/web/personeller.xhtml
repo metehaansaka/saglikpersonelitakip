@@ -57,7 +57,7 @@
                     <h:column>
                         <f:facet name="header">Müsait Saatleri</f:facet>
                         <h:form>
-                            <h:commandLink styleClass="btn btn-info btn-sm" action="bossaatler" value="GÖR"/>
+                            <h:commandButton action="#{bossaatController.listele(pplist.personel_id)}" styleClass="btn btn-info btn-sm"  value="GÖR"/>
                         </h:form>
                     </h:column>
                     <h:column>
@@ -93,4 +93,5 @@
         </div>
     </h:body>
 </html>
+
 

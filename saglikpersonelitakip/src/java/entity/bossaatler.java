@@ -1,7 +1,9 @@
-
 package entity;
 
 public class bossaatler {
+
+    private int bossaatler_id;
+    private int personel_id;
     private String pazartesi;
     private String sali;
     private String carsamba;
@@ -10,7 +12,9 @@ public class bossaatler {
     private String cumartesi;
     private String pazar;
 
-    public bossaatler(String pazartesi, String sali, String carsamba, String persembe, String cuma, String cumartesi, String pazar) {
+    public bossaatler(int bossaatler_id, int personel_id, String pazartesi, String sali, String carsamba, String persembe, String cuma, String cumartesi, String pazar) {
+        this.bossaatler_id = bossaatler_id;
+        this.personel_id = personel_id;
         this.pazartesi = pazartesi;
         this.sali = sali;
         this.carsamba = carsamba;
@@ -22,7 +26,28 @@ public class bossaatler {
 
     @Override
     public String toString() {
-        return "bossaatler{" + "pazartesi=" + pazartesi + ", sali=" + sali + ", carsamba=" + carsamba + ", persembe=" + persembe + ", cuma=" + cuma + ", cumartesi=" + cumartesi + ", pazar=" + pazar + '}';
+        return "bossaatler{" + "bossaatler_id=" + bossaatler_id + ", personel_id=" + personel_id + ", pazartesi=" + pazartesi + ", sali=" + sali + ", carsamba=" + carsamba + ", persembe=" + persembe + ", cuma=" + cuma + ", cumartesi=" + cumartesi + ", pazar=" + pazar + '}';
+    }
+
+    public int getPersonel_id() {
+        return personel_id;
+    }
+
+    public void setPersonel_id(int personel_id) {
+        this.personel_id = personel_id;
+    }
+
+   
+
+    public int getBossaatler_id() {
+        return bossaatler_id;
+    }
+
+    public void setBossaatler_id(int bossaatler_id) {
+        this.bossaatler_id = bossaatler_id;
+    }
+
+    public bossaatler() {
     }
 
     public String getPazartesi() {
@@ -80,5 +105,5 @@ public class bossaatler {
     public void setPazar(String pazar) {
         this.pazar = pazar;
     }
-    
+
 }

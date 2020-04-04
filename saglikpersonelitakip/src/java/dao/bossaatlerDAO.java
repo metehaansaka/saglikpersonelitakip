@@ -1,4 +1,3 @@
-
 package dao;
 
 import entity.bossaatler;
@@ -13,16 +12,17 @@ import java.util.logging.Logger;
 import util.DBConnection;
 
 public class bossaatlerDAO {
-    public List<bossaatler> getBossaatlerr(){
+
+    public List<bossaatler> getBossaatlerr(int a) {
         List<bossaatler> csaat = new ArrayList();
         DBConnection db = new DBConnection();
         Connection c = db.connect();
         try {
-             Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery("Select * from bossaatler");
-            while(rs.next()){
-                bossaatler saat = new bossaatler(rs.getString("pazartesi"),rs.getString("sali"),rs.getString("carsamba"),
-                rs.getString("persembe"),rs.getString("cuma"),rs.getString("cumartesi"),rs.getString("pazar"));
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("Select * from bossaatler where personel_id="+a);
+            while (rs.next()) {
+                bossaatler saat = new bossaatler(rs.getInt("bossaatler_id"),rs.getInt("personel_id"), rs.getString("pazartesi"), rs.getString("sali"), rs.getString("carsamba"),
+                        rs.getString("persembe"), rs.getString("cuma"), rs.getString("cumartesi"), rs.getString("pazar"));
                 csaat.add(saat);
             }
         } catch (SQLException ex) {
@@ -30,4 +30,5 @@ public class bossaatlerDAO {
         }
         return csaat;
     }
+
 }

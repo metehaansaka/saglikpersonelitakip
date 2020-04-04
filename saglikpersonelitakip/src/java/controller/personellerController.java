@@ -24,7 +24,7 @@ public class personellerController implements Serializable {
     private List<personeller> pplist;
     private personellerDAO pdao;
     private personeller personel;
-
+    
     public String delete(personeller p) {
         this.getPdao().delete(p);
         return "personeller";

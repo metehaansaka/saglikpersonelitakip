@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <title></title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Menü</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h:form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <h:commandLink styleClass="nav-link mr-3" action="index" value="Anasayfa"/>
+
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="personeller" value="Personeller"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="container">
+                <h:dataTable class="table table-striped mt-3" value="#{bossaatController.saatlist}" var="saatlist">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{saatlist.bossaatler_id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Pazartesi</f:facet>
+                            #{saatlist.pazartesi}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Salı</f:facet>
+                            #{saatlist.sali}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Çarşamba</f:facet>
+                            #{saatlist.carsamba}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Perşembe</f:facet>
+                            #{saatlist.persembe}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Cuma</f:facet>
+                            #{saatlist.cuma}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Cumartesi</f:facet>
+                            #{saatlist.cumartesi}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Pazar</f:facet>
+                            #{saatlist.pazar}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </div>
+
+    </h:body>
+</html>
+
