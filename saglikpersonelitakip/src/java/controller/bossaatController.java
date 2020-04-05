@@ -16,6 +16,17 @@ public class bossaatController implements Serializable{
     private bossaatlerDAO saatDao;
     private bossaatler bossaat;
     
+    public String delete(bossaatler b){
+        this.getSaatDao().delete(b);
+        return "bossaatler";
+    }
+    
+    public String create(int id){
+        this.getSaatDao().insert(this.bossaat,id);
+        this.bossaat = new bossaatler();
+        return "bossaatler";
+    }
+    
     public String listele(int a){
         this.saatlist = this.getSaatDao().getBossaatlerr(a);
         return "bossaatler";

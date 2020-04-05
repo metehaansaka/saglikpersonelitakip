@@ -66,9 +66,8 @@
                             #{saatlist.pazar}
                     </h:column>
                     <h:column>
-                        <f:facet name="header"></f:facet>
                         <h:form>
-                            <h:commandButton styleClass="btn btn-danger btn-sm" value="SİL"/>
+                            <h:commandButton  styleClass="btn btn-danger btn-sm" value="SİL" action="#{bossaatController.delete(saatlist)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
@@ -80,6 +79,7 @@
                 <h:form>
                     <div class="row">
                         <div class="col-md-6">
+
                             Pazartesi : <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazartesi}"/>
                             Salı: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.sali}"/>
                             Çarşamba: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.carsamba}"/>
@@ -89,10 +89,13 @@
                             Pazar: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazar}"/>
 
                         </div>
+
                         <div class="col-md-6">
                             <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
-                                <h:commandButton  value="Ekle" styleClass="btn btn-success"  />
-                                <h:commandButton  value="Güncelle" styleClass="btn btn-info"  />
+                                <h:form>
+                                    <h:commandButton  value="Ekle" styleClass="btn btn-success" action="#{bossaatController.create(bossaatController.saatlist[0].personel_id)}"  />
+                                    <h:commandButton  value="Güncelle" styleClass="btn btn-info"  />
+                                </h:form>
 
 
                             </div>
