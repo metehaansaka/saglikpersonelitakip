@@ -14,6 +14,7 @@ import javax.inject.Named;
 public class bossaatController implements Serializable{
     private List<bossaatler> saatlist;
     private bossaatlerDAO saatDao;
+    private bossaatler bossaat;
     
     public String listele(int a){
         this.saatlist = this.getSaatDao().getBossaatlerr(a);
@@ -37,6 +38,17 @@ public class bossaatController implements Serializable{
 
     public void setSaatDao(bossaatlerDAO saatDao) {
         this.saatDao = saatDao;
+    }
+
+    public bossaatler getBossaat() {
+        if (this.bossaat==null) {
+            this.bossaat=new bossaatler();
+        }
+        return bossaat;
+    }
+
+    public void setBossaat(bossaatler bossaat) {
+        this.bossaat = bossaat;
     }
     
     
