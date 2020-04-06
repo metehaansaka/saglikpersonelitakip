@@ -1,4 +1,3 @@
-
 package controller;
 
 import dao.bossaatlerDAO;
@@ -11,24 +10,39 @@ import javax.inject.Named;
 
 @Named
 @SessionScoped
-public class bossaatController implements Serializable{
+public class bossaatController implements Serializable {
+
     private List<bossaatler> saatlist;
     private bossaatlerDAO saatDao;
     private bossaatler bossaat;
-    
-    public String delete(bossaatler b){
+
+    public String delete(bossaatler b) {
         this.getSaatDao().delete(b);
         return "bossaatler";
     }
     
-    public String create(int id){
-        this.getSaatDao().insert(this.bossaat,id);
+    public String updateForm(bossaatler b){
+        this.bossaat = b;
+        return "bossaatler";
+    }
+    public String reset(){
         this.bossaat = new bossaatler();
         return "bossaatler";
     }
-    
-    public String listele(int a){
+    public String uptade(){
+        this.getSaatDao().update(this.bossaat);
+        this.bossaat=new bossaatler();
+        return "bossaatler";
+    }
+    public String create(int id) {
+        this.getSaatDao().insert(this.bossaat, id);
+        this.bossaat = new bossaatler();
+        return "bossaatler";
+    }
+
+    public String listele(int a) {
         this.saatlist = this.getSaatDao().getBossaatlerr(a);
+        this.bossaat = new bossaatler();
         return "bossaatler";
     }
 
@@ -41,8 +55,8 @@ public class bossaatController implements Serializable{
     }
 
     public bossaatlerDAO getSaatDao() {
-        if (this.saatDao==null) {
-            this.saatDao=new bossaatlerDAO();
+        if (this.saatDao == null) {
+            this.saatDao = new bossaatlerDAO();
         }
         return saatDao;
     }
@@ -52,8 +66,8 @@ public class bossaatController implements Serializable{
     }
 
     public bossaatler getBossaat() {
-        if (this.bossaat==null) {
-            this.bossaat=new bossaatler();
+        if (this.bossaat == null) {
+            this.bossaat = new bossaatler();
         }
         return bossaat;
     }
@@ -61,6 +75,5 @@ public class bossaatController implements Serializable{
     public void setBossaat(bossaatler bossaat) {
         this.bossaat = bossaat;
     }
-    
-    
+
 }

@@ -5,7 +5,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <h:outputStylesheet library="css" name="bootstrap.css" />
-        <title></title>
+        <title>Müsait Saatler</title>
     </h:head>
     <h:body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -70,6 +70,11 @@
                             <h:commandButton  styleClass="btn btn-danger btn-sm" value="SİL" action="#{bossaatController.delete(saatlist)}"/>
                         </h:form>
                     </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton  styleClass="btn btn-info btn-sm" value="DUZENLE" action="#{bossaatController.updateForm(saatlist)}"/>
+                        </h:form>
+                    </h:column>
                 </h:dataTable>
             </div>
 
@@ -79,7 +84,7 @@
                 <h:form>
                     <div class="row">
                         <div class="col-md-6">
-
+                            <h:inputHidden value="#{bossaatController.bossaat.bossaatler_id}"/>
                             Pazartesi : <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazartesi}"/>
                             Salı: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.sali}"/>
                             Çarşamba: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.carsamba}"/>
@@ -91,14 +96,15 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
-                                <h:form>
-                                    <h:commandButton  value="Ekle" styleClass="btn btn-success" action="#{bossaatController.create(bossaatController.saatlist[0].personel_id)}"  />
-                                    <h:commandButton  value="Güncelle" styleClass="btn btn-info"  />
-                                </h:form>
 
+                            <h:form>
+                                <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
+                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Düzenle" styleClass="btn btn-info" action="#{bossaatController.uptade}"  />
+                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar==null}" value="Ekle" styleClass="btn btn-success" action="#{bossaatController.create(bossaatController.saatlist[0].personel_id)}"  />
+                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary" action="#{bossaatController.reset}"  />
 
-                            </div>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </h:form>
