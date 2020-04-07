@@ -57,7 +57,13 @@
                     <h:column>
                         <f:facet name="header">Müsait Saatleri</f:facet>
                         <h:form>
-                            <h:commandButton action="#{bossaatController.listele(pplist.personel_id)}" styleClass="btn btn-info btn-sm"  value="GÖR"/>
+                            <center><h:commandButton action="#{bossaatController.listele(pplist.personel_id)}" styleClass="btn btn-info btn-sm"  value="GÖR"/></center>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Seç</f:facet>
+                        <h:form>
+                            <h:commandButton action="#{personellerController.select(pplist)}" styleClass="btn btn-secondary btn-sm"  value="Seç"/>
                         </h:form>
                     </h:column>
                     <h:column>
@@ -87,7 +93,11 @@
                         <label for="persone_telefon">Telefon:</label>
                         <h:inputText value="#{personellerController.personel.personel_telefon}" class="form-control" id="persone_telefon" />
                     </div>  
-                    <h:commandButton action="#{personellerController.create}" class="btn btn-success" value="Ekle"/>
+                    <h:commandButton rendered="#{personellerController.personel.personel_id==0}" action="#{personellerController.create}" class="btn btn-success" value="Ekle"/>
+                    <div class="btn-group">
+                        <h:commandButton rendered="#{personellerController.personel.personel_id!=0}" action="#{personellerController.reset}" class="btn btn-info" value="Formu Sıfırla"/>
+                        <h:commandButton rendered="#{personellerController.personel.personel_id!=0}" action="#{personellerController.update}" class="btn btn-success" value="Güncelle"/>
+                    </div>
                 </h:form>
             </div>
         </div>

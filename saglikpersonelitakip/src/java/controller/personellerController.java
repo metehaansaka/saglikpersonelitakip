@@ -25,11 +25,27 @@ public class personellerController implements Serializable {
     private personellerDAO pdao;
     private personeller personel;
     
+    public String reset(){
+        this.personel=new personeller();
+        return "personeller";
+    }
+    
     public String delete(personeller p) {
         this.getPdao().delete(p);
         return "personeller";
     }
-
+    
+    public String select(personeller p){
+        this.personel=p;
+        return "personeller";
+    }
+       
+    public String update(){
+        this.getPdao().update(this.personel);
+        this.personel=new personeller();
+        return "personeller";
+    }
+    
     public String create() {
         this.getPdao().insert(this.personel);
         return "personeller";
@@ -54,7 +70,7 @@ public class personellerController implements Serializable {
     public void setPdao(personellerDAO pdao) {
         this.pdao = pdao;
     }
-
+    
     public personeller getPersonel() {
         if (this.personel == null) {
             this.personel = new personeller();

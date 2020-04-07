@@ -64,4 +64,17 @@ public class personellerDAO {
             Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void update(personeller personel) {
+         DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try {
+            Statement st = c.createStatement();
+            st.executeUpdate("update personeller set personel_adsoyad='"+personel.getPersone_adsoyad()+"',"
+            + "personel_telefon='"+personel.getPersonel_telefon()+"',personel_cinsiyet='"+personel.getPersonel_cinsiyet()+"',"
+            + "personel_brans='"+personel.getPersonel_brans()+"' where personel_id=" + personel.getPersonel_id());
+        } catch (SQLException ex) {
+            Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
