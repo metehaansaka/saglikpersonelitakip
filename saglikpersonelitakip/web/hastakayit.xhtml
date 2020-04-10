@@ -35,30 +35,26 @@
         </nav>
         <div class="row">
             <div class="col-md-8">
-                <h:dataTable class="table table-striped ml-5 mt-3" value="#{personellerController.pplist}" var="pplist">
+                <h:dataTable class="table table-striped ml-5 mt-3" value="#{hasta_kayıtController.hkList}" var="hklist">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
-                            #{pplist.personel_id}
+                            #{hklist.hasta_id}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Ad Soyad</f:facet>
-                            #{pplist.persone_adsoyad}
+                        <f:facet name="header">Ad</f:facet>
+                            #{hklist.hasta_ad}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Branş</f:facet>
-                            #{pplist.personel_brans}
+                        <f:facet name="header">Soyad</f:facet>
+                            #{hklist.hasta_soyad}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Cinsiyet</f:facet>
-                            #{pplist.personel_cinsiyet}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Telefon</f:facet>
-                            #{pplist.personel_telefon}
+                        <f:facet name="header">Açıklama</f:facet>
+                            #{hklist.hasta_acıklama}
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Müsait Saatleri</f:facet>
+                        <f:facet name="header">İhtiyac Saatleri</f:facet>
                         <h:form>
                             <center><h:commandButton action="#{bossaatController.listele(pplist.personel_id)}" styleClass="btn btn-info btn-sm"  value="GÖR"/></center>
                         </h:form>
@@ -76,32 +72,6 @@
                         </h:form>
                     </h:column>
                 </h:dataTable>
-            </div>
-            <div class="col-md-3 ml-5">
-                <h3 style="color: green; text-align: center; " class="mt-3 mb">Yeni Kayıt Ekle</h3>
-                <h:form>
-                    <div class="row my-3">
-                        <label for="persone_adsoyad">Ad Soyad:</label>
-                        <h:inputText value="#{personellerController.personel.persone_adsoyad}" class="form-control" id="persone_adsoyad" />
-                    </div>  
-                    <div class="row my-3">
-                        <label for="persone_brans">Branş:</label>
-                        <h:inputText value="#{personellerController.personel.personel_brans}" class="form-control" id="persone_brans" />
-                    </div>  
-                    <div class="row my-3">
-                        <label for="persone_cinsiyet">Cinsiyet:</label>
-                        <h:inputText value="#{personellerController.personel.personel_cinsiyet}" class="form-control" id="persone_cinsiyet" />
-                    </div>  
-                    <div class="row my-3">
-                        <label for="persone_telefon">Telefon:</label>
-                        <h:inputText value="#{personellerController.personel.personel_telefon}" class="form-control" id="persone_telefon" />
-                    </div>  
-                    <h:commandButton rendered="#{personellerController.personel.personel_id==0}" action="#{personellerController.create}" class="btn btn-success" value="Ekle"/>
-                    <div class="btn-group">
-                        <h:commandButton rendered="#{personellerController.personel.personel_id!=0}" action="#{personellerController.reset}" class="btn btn-info" value="Formu Sıfırla"/>
-                        <h:commandButton rendered="#{personellerController.personel.personel_id!=0}" action="#{personellerController.update}" class="btn btn-success" value="Güncelle"/>
-                    </div>
-                </h:form>
             </div>
         </div>
     </h:body>

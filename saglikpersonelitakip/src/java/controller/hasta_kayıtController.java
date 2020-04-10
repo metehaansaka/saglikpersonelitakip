@@ -27,6 +27,7 @@ public class hasta_kayıtController implements Serializable {
   
 
     public List<hasta_kayıt> getHkList() {
+        this.hkList=this.getHkdao().getHastaKayit();
         return hkList;
     }
 
@@ -35,6 +36,9 @@ public class hasta_kayıtController implements Serializable {
     }
 
     public hasta_kayıtDAO getHkdao() {
+        if (this.hkdao==null) {
+            this.hkdao=new hasta_kayıtDAO();
+        }
         return hkdao;
     }
 
@@ -43,6 +47,9 @@ public class hasta_kayıtController implements Serializable {
     }
 
     public hasta_kayıt getHasta() {
+        if (this.hasta==null) {
+            this.hasta = new hasta_kayıt();
+        }
         return hasta;
     }
 
@@ -50,10 +57,6 @@ public class hasta_kayıtController implements Serializable {
         this.hasta = hasta;
     }
 
-    public hasta_kayıtController() {
-         this.hkList=new ArrayList();
-        this.hkdao=new hasta_kayıtDAO ();
-    }
     
 
     

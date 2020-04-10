@@ -21,7 +21,7 @@ public class ihtiyac_saati {
     private int ihtiyac_id;
     private int hasta_id;
     private String gun;
-    private time saat;
+    private String saat;
 
     @Override
     public String toString() {
@@ -29,7 +29,7 @@ public class ihtiyac_saati {
     }
     
 
-    public ihtiyac_saati(int ihtiyac_id, int hasta_id, String gun, time saat) {
+    public ihtiyac_saati(int ihtiyac_id, int hasta_id, String gun, String saat) {
         this.ihtiyac_id = ihtiyac_id;
         this.hasta_id = hasta_id;
         this.gun = gun;
@@ -60,11 +60,11 @@ public class ihtiyac_saati {
         this.gun = gun;
     }
 
-    public time getSaat() {
+    public String getSaat() {
         return saat;
     }
 
-    public void setSaat(time saat) {
+    public void setSaat(String saat) {
         this.saat = saat;
     }
     
