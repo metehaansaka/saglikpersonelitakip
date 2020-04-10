@@ -43,27 +43,24 @@ public class hasta_kayıtDAO {
 
     }
 
-    public void veriekle(int hasta_id, String hasta_ad, String hasta_soyad, String hasta_adres, String hasta_ihtiyacsaati, String hasta_acıklama) {
+    public void veriekle(String hasta_ad, String hasta_soyad, String hasta_acıklama) {
         DBConnection db = new DBConnection();
         Connection con = db.connect();
         String durumbilgisi = "";
         try {
 
-            String eklemeSorgusu = ("INSERT INTO hasta_kayıt" + "(hasta_id,hasta_ad,hasta_soyad" + "hasta_adres,hasta_ihtiyacsaati,hasta_acıklama)" + "VALUES(?,?,?,?,?,?));");
+            String eklemeSorgusu = ("insert into hasta_kayit (hasta_ad,hasta_soyad,hasta_aciklama) values(?,?,?)");
 
             PreparedStatement preparedstatement = con.prepareStatement(eklemeSorgusu);
 
-            preparedstatement.setInt(1, hasta_id);
-            preparedstatement.setString(2, hasta_ad);
-            preparedstatement.setString(3, hasta_soyad);
-            preparedstatement.setString(4, hasta_adres);
-            preparedstatement.setString(5, hasta_ihtiyacsaati);
-            preparedstatement.setString(6, hasta_acıklama);
+            preparedstatement.setString(1, hasta_ad);
+            preparedstatement.setString(2, hasta_soyad);
+            preparedstatement.setString(3, hasta_acıklama);
             if (preparedstatement.execute()) {
-                durumbilgisi = "ekleme başarısız!";
+                durumbilgisi = "ekleme başarılı";
 
             } else {
-                durumbilgisi = "ekleme başarılı.";
+                durumbilgisi = "ekleme başarısız.";
             }
 
         } catch (SQLException e) {
@@ -72,23 +69,22 @@ public class hasta_kayıtDAO {
         System.out.println(durumbilgisi);
     }
 
-    /*public void veriduzenle(int hasta_id, String hasta_ad, String hasta_soyad, String hasta_adres, hasta_ihtiyacsaati, String hasta_acıklama) {
+    public void veriduzenle(int hasta_id, String hasta_ad, String hasta_soyad, String hasta_acıklama) {
+        DBConnection db = new DBConnection();
+        Connection con = db.connect();
         String durumbilgisi = "";
         try {
-            String duzenlemeSorgusu = "UPDATE hasta_kayıt"
-                    + " SET hasta_soyad=?"
-                    + ",hasta_adres=?"
-                    + ",hasta_ihtiyacsaati=?"
-                    + ",hasta_acıklama=?"
+            String duzenlemeSorgusu = "UPDATE hasta_kayit"
+                    + " SET hasta_ad=?"
+                    + ",hasta_soyad=?"
+                    + ",hasta_aciklama=?"
                     + "WHERE hasta_id=?";
-            PreparedStatement preparedstatement = con.preparedstatement(duzenlemeSorgusu);
-
-            preparedstatement.setint(1, hasta_id);
-            preparedstatement.setString(2, hasta_ad);
-            preparedstatement.setString(3, hasta_soyad);
-            preparedstatement.setString(4, hasta_adres);
-            preparedstatement.setString(5, hasta_ihtiyacsaati);
-            preparedstatement.setString(6, hasta_acıklama);
+            PreparedStatement preparedstatement = con.prepareStatement(duzenlemeSorgusu);
+            
+            preparedstatement.setString(1, hasta_ad);
+            preparedstatement.setString(2, hasta_soyad);
+            preparedstatement.setString(3, hasta_acıklama);
+            preparedstatement.setInt(4, hasta_id);
 
             int resulset = preparedstatement.executeUpdate();
             if (resulset == 1) {
@@ -101,14 +97,14 @@ public class hasta_kayıtDAO {
             System.out.println("Hata:" + e);
         }
         System.out.println(durumbilgisi);
-    }*/
+    }
 
     public void verisil(int hasta_id) {
         DBConnection db = new DBConnection();
         Connection con = db.connect();
         String durumbilgisi = "";
         try {
-            String silmeSorgusu = "DELETE FROM hasta_kayıt WHERE hasta_id=?";
+            String silmeSorgusu = "DELETE FROM hasta_kayit WHERE hasta_id=?";
             PreparedStatement preparedstatement = con.prepareStatement(silmeSorgusu);
             preparedstatement.setInt(1, hasta_id);
             boolean resulset = preparedstatement.execute();

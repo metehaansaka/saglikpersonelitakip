@@ -24,10 +24,33 @@ public class hasta_kayıtController implements Serializable {
     private hasta_kayıtDAO hkdao;
     private hasta_kayıt hasta;
     
-  
+    public String delete(int h){
+        this.getHkdao().verisil(h);
+        return "hastakayit";
+    }
+    
+    public String update(){
+        this.getHkdao().veriduzenle(this.hasta.getHasta_id(),this.hasta.getHasta_ad(), this.hasta.getHasta_soyad(), this.hasta.getHasta_acıklama());
+        return "hastakayit";
+    }
+    
+    public String reset(){
+        this.hasta = new hasta_kayıt();
+        return "hastakayit";
+    }
+    
+    public String select(hasta_kayıt h){
+        this.hasta = h;
+        return "hastakayit";
+    }
+    
+    public String create(){
+        this.getHkdao().veriekle(this.hasta.getHasta_ad(),this.hasta.getHasta_soyad(),this.hasta.getHasta_acıklama());
+        return "hastakayit";
+    }
 
     public List<hasta_kayıt> getHkList() {
-        this.hkList=this.getHkdao().getHastaKayit();
+            this.hkList=this.getHkdao().getHastaKayit();
         return hkList;
     }
 

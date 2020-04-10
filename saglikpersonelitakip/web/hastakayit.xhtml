@@ -62,16 +62,38 @@
                     <h:column>
                         <f:facet name="header">Seç</f:facet>
                         <h:form>
-                            <h:commandButton action="#{personellerController.select(pplist)}" styleClass="btn btn-secondary btn-sm"  value="Seç"/>
+                            <h:commandButton action="#{hasta_kayıtController.select(hklist)}" styleClass="btn btn-secondary btn-sm"  value="Seç"/>
                         </h:form>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Sil</f:facet>
                         <h:form>
-                            <h:commandLink styleClass="btn btn-danger btn-sm" action="#{personellerController.delete(pplist)}" value="SİL"/>
+                            <h:commandLink styleClass="btn btn-danger btn-sm" action="#{hasta_kayıtController.delete(hklist.hasta_id)}" value="SİL"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
+            </div>
+            <div class="col-md-3 ml-5">
+                <h3 style="color: green; text-align: center; " class="mt-3 mb">Yeni Kayıt Ekle</h3>
+                <h:form>
+                    <div class="row my-3">
+                        <label for="persone_adsoyad">Ad:</label>
+                        <h:inputText value="#{hasta_kayıtController.hasta.hasta_ad}" class="form-control" id="persone_adsoyad" />
+                    </div>  
+                    <div class="row my-3">
+                        <label for="persone_brans">Soyad:</label>
+                        <h:inputText value="#{hasta_kayıtController.hasta.hasta_soyad}" class="form-control" id="persone_brans" />
+                    </div>  
+                    <div class="row my-3">
+                        <label for="persone_cinsiyet">Açıklama:</label>
+                        <h:inputTextarea rows="10" value="#{hasta_kayıtController.hasta.hasta_acıklama}" class="form-control" id="persone_cinsiyet" />
+                    </div>  
+                    <h:commandButton rendered="#{hasta_kayıtController.hasta.hasta_id==0}" action="#{hasta_kayıtController.create}" class="btn btn-success" value="Ekle"/>
+                    <div class="btn-group">
+                        <h:commandButton rendered="#{hasta_kayıtController.hasta.hasta_id!=0}" action="#{hasta_kayıtController.reset}" class="btn btn-info" value="Formu Sıfırla"/>
+                        <h:commandButton rendered="#{hasta_kayıtController.hasta.hasta_id!=0}" action="#{hasta_kayıtController.update}" class="btn btn-success" value="Güncelle"/>
+                    </div>
+                </h:form>
             </div>
         </div>
     </h:body>
