@@ -7,6 +7,7 @@ package dao;
 
 
 import static com.oracle.wls.shaded.org.apache.xalan.lib.ExsltDatetime.time;
+import entity.hasta_kayıt;
 import entity.ihtiyac_saati;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -63,6 +64,40 @@ public class ihtiyac_saatiDAO {
             System.out.println("Hata:"+e);
         }
          System.out.println(durumbilgisi);
+    }
+
+    public void delete(ihtiyac_saati a) {
+        try {
+            DBConnection db = new DBConnection();
+            Connection con = db.connect();
+            Statement st = con.createStatement();
+            st.executeUpdate("delete from ihtiyac_saati where ihtiyac_id="+a.getIhtiyac_id());
+        } catch (SQLException ex) {
+            Logger.getLogger(ihtiyac_saatiDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void insert(int a,ihtiyac_saati ih) {
+         try {
+            DBConnection db = new DBConnection();
+            Connection con = db.connect();
+            Statement st = con.createStatement();
+            st.executeUpdate("insert into ihtiyac_saati (hasta_id,gun,saat) values ('"+a+"',"
+                    + "'"+ih.getGun()+"','"+ih.getSaat()+"')");
+        } catch (SQLException ex) {
+            Logger.getLogger(ihtiyac_saatiDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void update(ihtiyac_saati ih) {
+        try {
+            DBConnection db = new DBConnection();
+            Connection con = db.connect();
+            Statement st = con.createStatement();
+            st.executeUpdate("update from ihtiyac_saati gun="+ih.getGun()+"saat="+ih.getSaat()+"where ihtiyac_id="+ih.getIhtiyac_id());
+        } catch (SQLException ex) {
+            Logger.getLogger(ihtiyac_saatiDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
    

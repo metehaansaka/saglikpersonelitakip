@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <title>Müsait Saatler</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Menü</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h:form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <h:commandLink styleClass="nav-link mr-3" action="index" value="Anasayfa"/>
+
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="personeller" value="Personeller"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="hastakayit" value="Hastalar"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="container">
+                <h:dataTable class="table table-dark mt-3" value="#{ihtiyac_saatiController.ihList}" var="ihlist">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{ihlist.ihtiyac_id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Gün</f:facet>
+                            #{ihlist.gun}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Saat</f:facet>
+                            #{ihlist.saat}
+                    </h:column>
+
+                    <h:column>
+                        <h:form>
+                            <h:commandButton  styleClass="btn btn-danger btn-sm" value="SİL" action="#{ihtiyac_saatiController.delete(ihlist)}"/>
+                        </h:form>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton  styleClass="btn btn-info btn-sm" value="SEÇ" action="#{ihtiyac_saatiController.select(ihlist)}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="col-md-8">
+                <h:form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h:inputHidden value="#{bossaatController.bossaat.bossaatler_id}"/>
+                            Gün : <h:inputText style="width:200px;" styleClass="form-control" value="#{ihtiyac_saatiController.ih.gun}"/>
+                            Saat : <h:inputText style="width:200px;" styleClass="form-control" value="#{ihtiyac_saatiController.ih.saat}"/>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <h:form>
+                                <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
+                                    <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun!=null}" value="Düzenle" styleClass="btn btn-info" action="#{ihtiyac_saatiController.update}"  />
+                                    <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun==null}" value="Ekle" styleClass="btn btn-success" action="#{ihtiyac_saatiController.create(ihtiyac_saatiController.ihList[0].hasta_id)}"  />
+                                    <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary" action="#{ihtiyac_saatiController.reset}"  />
+
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

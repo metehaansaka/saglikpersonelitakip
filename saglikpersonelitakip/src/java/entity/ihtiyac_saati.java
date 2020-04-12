@@ -23,6 +23,9 @@ public class ihtiyac_saati {
     private String gun;
     private String saat;
 
+    public ihtiyac_saati() {
+    }
+
     @Override
     public String toString() {
         return "ihtiyac_saati{" + "ihtiyac_id=" + ihtiyac_id + ", hasta_id=" + hasta_id + ", gun=" + gun + ", saat=" + saat + '}';

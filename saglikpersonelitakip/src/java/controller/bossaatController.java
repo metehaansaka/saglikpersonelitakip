@@ -15,9 +15,11 @@ public class bossaatController implements Serializable {
     private List<bossaatler> saatlist;
     private bossaatlerDAO saatDao;
     private bossaatler bossaat;
+    private int a;
 
     public String delete(bossaatler b) {
         this.getSaatDao().delete(b);
+        this.saatlist=this.getSaatDao().getBossaatlerr(this.getA());
         return "bossaatler";
     }
     
@@ -37,10 +39,12 @@ public class bossaatController implements Serializable {
     public String create(int id) {
         this.getSaatDao().insert(this.bossaat, id);
         this.bossaat = new bossaatler();
+        this.saatlist=this.getSaatDao().getBossaatlerr(this.getA());
         return "bossaatler";
     }
 
     public String listele(int a) {
+        this.a=a;
         this.saatlist = this.getSaatDao().getBossaatlerr(a);
         this.bossaat = new bossaatler();
         return "bossaatler";
@@ -74,6 +78,14 @@ public class bossaatController implements Serializable {
 
     public void setBossaat(bossaatler bossaat) {
         this.bossaat = bossaat;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
     }
 
 }
