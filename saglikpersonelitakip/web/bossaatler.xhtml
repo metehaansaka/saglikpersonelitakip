@@ -78,39 +78,93 @@
                             <h:commandButton  styleClass="btn btn-info btn-sm" value="DUZENLE" action="#{bossaatController.updateForm(saatlist)}"/>
                         </h:form>
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">Yaptığı İşler</f:facet>
+                        <h:form>
+                            <h:commandButton  styleClass="btn btn-info btn-light" value="GÖR" action="#{islerController.Listele(bossaatController.saatlist[0].personel_id)}"/>
+                        </h:form>
+                    </h:column>
                 </h:dataTable>
             </div>
 
         </div>
         <div class="container">
-            <div class="col-md-8">
+            <div class="row">
                 <h:form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h:inputHidden value="#{bossaatController.bossaat.bossaatler_id}"/>
-                            Pazartesi : <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazartesi}"/>
-                            Salı: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.sali}"/>
-                            Çarşamba: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.carsamba}"/>
-                            Perşembe: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.persembe}"/>
-                            Cuma: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.cuma}"/>
-                            Cumartesi: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.cumartesi}"/>
-                            Pazar: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazar}"/>
+
+                    <div class="col-md-3">
+                        <h:inputHidden value="#{bossaatController.bossaat.bossaatler_id}"/>
+                        Pazartesi: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazartesi}"/>
+                        Salı: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.sali}"/>
+                        Çarşamba: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.carsamba}"/>
+                        Perşembe: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.persembe}"/>
+                        Cuma: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.cuma}"/>
+                        Cumartesi: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.cumartesi}"/>
+                        Pazar: <h:inputText style="width:200px;" styleClass="form-control" value="#{bossaatController.bossaat.pazar}"/>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+
+                        <div class="btn-group" style=" margin-bottom: -50px;">
+                            <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Düzenle" styleClass="btn btn-info" action="#{bossaatController.uptade}"  />
+                            <h:commandButton rendered="#{bossaatController.bossaat.pazar==null}" value="Ekle" styleClass="btn btn-success" action="#{bossaatController.create(bossaatController.saatlist[0].personel_id)}"  />
+                            <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary" action="#{bossaatController.reset}"  />
 
                         </div>
 
-                        <div class="col-md-6">
-
-                            <h:form>
-                                <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
-                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Düzenle" styleClass="btn btn-info" action="#{bossaatController.uptade}"  />
-                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar==null}" value="Ekle" styleClass="btn btn-success" action="#{bossaatController.create(bossaatController.saatlist[0].personel_id)}"  />
-                                    <h:commandButton rendered="#{bossaatController.bossaat.pazar!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary" action="#{bossaatController.reset}"  />
-
-                                </div>
-                            </h:form>
-                        </div>
                     </div>
                 </h:form>
+                <div class="col-md-5">
+                    <center><h3 style="margin-left: 90px;">Yaptığı İşler</h3></center>  
+                    <h:dataTable rendered="#{islerController.ilist!=null}"  class="table table-striped ml-5 mt-3" value="#{islerController.ilist}" var="ilist">
+
+                        <h:column>
+                            <f:facet name="header">ID</f:facet>
+                            <h:form><h:commandLink action="#{islerController.select(ilist)}">#{ilist.is_id}</h:commandLink></h:form>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Hastaya Git</f:facet>
+                            <h:form><h:commandLink  action="#{islerController.hastaCagir(ilist.hasta_id)}">#{ilist.hasta_id}</h:commandLink></h:form>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Yapılan İş</f:facet>
+                            #{ilist.is_yapilan}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Ücret</f:facet>
+                            #{ilist.ucret}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tarih</f:facet>
+                            #{ilist.tarih}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Sil</f:facet>
+                            <h:form><h:commandButton value="SİL" styleClass="btn btn-danger btn-sm" action="#{islerController.delete(ilist.is_id)}"/></h:form>
+                        </h:column>
+                    </h:dataTable>
+
+
+                </div>
+                <div style="margin-left: 100px;" class="col-md-3">
+                    <h:form>
+                        Hasta id: <h:inputText styleClass="form-control my-3" value="#{islerController.i.hasta_id}" />
+                        Yapılan İş: <h:inputText styleClass="form-control my-3" value="#{islerController.i.is_yapilan}" />
+                        Ücret: <h:inputText styleClass="form-control my-3" value="#{islerController.i.ucret}" />
+                        Tarih: <h:inputText styleClass="form-control my-3" value="#{islerController.i.tarih}" />
+                        <div class="btn-group">
+                            <h:commandButton rendered="#{islerController.i.is_yapilan!=null}" value="Düzenle" styleClass="btn btn-info btn-sm" action="#{islerController.update}"  />
+                            <h:commandButton rendered="#{islerController.i.is_yapilan==null}" value="Ekle" styleClass="btn btn-success btn-sm" action="#{islerController.create(islerController.ilist[0].personel_id)}"  />
+                            <h:commandButton rendered="#{islerController.i.is_yapilan!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary btn-sm" action="#{islerController.reset}"  />
+                        </div>
+                        
+                    </h:form>
+                </div>
+
+
+
             </div>
         </div>
 

@@ -10,11 +10,11 @@ package entity;
  * @author lenovo
  */
 public class hasta_kayıt {
+
     private int hasta_id;
     private String hasta_ad;
     private String hasta_soyad;
-    private String hasta_ihtiyacsaati;
-    private String hasta_aciklama; 
+    private String hasta_aciklama;
 
     public hasta_kayıt(int hasta_id, String hasta_ad, String hasta_soyad, String hasta_aciklama) {
         this.hasta_id = hasta_id;
@@ -23,19 +23,22 @@ public class hasta_kayıt {
         this.hasta_aciklama = hasta_aciklama;
     }
 
+    public String getHasta_aciklama() {
+        return hasta_aciklama;
+    }
+
+    public void setHasta_aciklama(String hasta_aciklama) {
+        this.hasta_aciklama = hasta_aciklama;
+    }
+
     public hasta_kayıt() {
 
-        }
-    
+    }
 
     @Override
     public String toString() {
         return "hasta_kay\u0131t{" + "hasta_id=" + hasta_id + ", hasta_ad=" + hasta_ad + ", hasta_soyad=" + hasta_soyad + ", hasta_aciklama=" + hasta_aciklama + '}';
     }
-    
-    
-    
-    
 
     public int getHasta_id() {
         return hasta_id;
@@ -64,11 +67,9 @@ public class hasta_kayıt {
     public String getHasta_acıklama() {
         return hasta_aciklama;
     }
-
+    
     public void setHasta_acıklama(String hasta_acıklama) {
         this.hasta_aciklama = hasta_acıklama;
     }
-    
-    
-    
+
 }

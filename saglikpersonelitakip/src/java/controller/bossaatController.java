@@ -2,6 +2,7 @@ package controller;
 
 import dao.bossaatlerDAO;
 import entity.bossaatler;
+import entity.isler;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,5 +88,5 @@ public class bossaatController implements Serializable {
     public void setA(int a) {
         this.a = a;
     }
-
+    
 }

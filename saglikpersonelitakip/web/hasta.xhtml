@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.css" />
+        <title>Hasta</title>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Menü</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h:form>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <h:commandLink styleClass="nav-link mr-3" action="index" value="Anasayfa"/>
+
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="personeller" value="Personeller"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:commandLink styleClass="nav-link mr-3" action="hastakayit" value="Hastalar"/>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="container">
+                <h:dataTable class="table table-dark mt-3" value="#{islerController.hlist}" var="hlist">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{hlist.hasta_id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Ad</f:facet>
+                            #{hlist.hasta_ad}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Soyad</f:facet>
+                            #{hlist.hasta_soyad}
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </div>
+        <br></br>
+        <br></br>
+        <center><h3>İhtiyaç Saatleri</h3></center>
+        <div class="row">
+            
+            <div class="container">
+                <h:dataTable class="table table-dark mt-3" value="#{islerController.islist}" var="islist">
+                    <h:column>
+                        <f:facet name="header">Gün</f:facet>
+                            #{islist.gun}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Saat</f:facet>
+                            #{islist.saat}
+                    </h:column>
+                  
+                </h:dataTable>
+            </div>
+
+        </div>
+       
+
+    </h:body>
+</html>
+
