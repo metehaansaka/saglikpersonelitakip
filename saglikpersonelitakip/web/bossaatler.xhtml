@@ -126,19 +126,19 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Hastaya Git</f:facet>
-                            <h:form><h:commandLink  action="#{islerController.hastaCagir(ilist.hasta_id)}">#{ilist.hasta_id}</h:commandLink></h:form>
+                                #{bossaatController.getById(ilist.hasta_id).hasta_ad}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Yapılan İş</f:facet>
-                            #{ilist.is_yapilan}
+                                #{ilist.is_yapilan}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Ücret</f:facet>
-                            #{ilist.ucret}
+                                #{ilist.ucret}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Tarih</f:facet>
-                            #{ilist.tarih}
+                                #{ilist.tarih}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Sil</f:facet>
@@ -150,7 +150,11 @@
                 </div>
                 <div style="margin-left: 100px;" class="col-md-3">
                     <h:form>
-                        Hasta id: <h:inputText styleClass="form-control my-3" value="#{islerController.i.hasta_id}" />
+                        <h:selectOneMenu value="#{islerController.i.hasta_id}">
+                            <f:selectItems value="#{hasta_kayıtController.hkList}" var="c" itemLabel="#{c.hasta_ad}" itemValue="#{c.hasta_id}"/>
+                        </h:selectOneMenu>
+                        <br></br>
+                        <br></br>
                         Yapılan İş: <h:inputText styleClass="form-control my-3" value="#{islerController.i.is_yapilan}" />
                         Ücret: <h:inputText styleClass="form-control my-3" value="#{islerController.i.ucret}" />
                         Tarih: <h:inputText styleClass="form-control my-3" value="#{islerController.i.tarih}" />
@@ -159,7 +163,7 @@
                             <h:commandButton rendered="#{islerController.i.is_yapilan==null}" value="Ekle" styleClass="btn btn-success btn-sm" action="#{islerController.create(islerController.ilist[0].personel_id)}"  />
                             <h:commandButton rendered="#{islerController.i.is_yapilan!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary btn-sm" action="#{islerController.reset}"  />
                         </div>
-                        
+
                     </h:form>
                 </div>
 

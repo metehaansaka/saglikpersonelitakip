@@ -2,6 +2,7 @@ package controller;
 
 import dao.bossaatlerDAO;
 import entity.bossaatler;
+import entity.hasta_kayıt;
 import entity.isler;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +18,11 @@ public class bossaatController implements Serializable {
     private bossaatlerDAO saatDao;
     private bossaatler bossaat;
     private int a;
-
+    
+    public hasta_kayıt getById(int id){
+       return this.getSaatDao().getById(id);
+    }
+    
     public String delete(bossaatler b) {
         this.getSaatDao().delete(b);
         this.saatlist=this.getSaatDao().getBossaatlerr(this.getA());

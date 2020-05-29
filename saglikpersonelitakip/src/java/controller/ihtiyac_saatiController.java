@@ -6,6 +6,7 @@
 package controller;
 
 import dao.ihtiyac_saatiDAO;
+import entity.adres;
 import entity.hasta_kayıt;
 import entity.ihtiyac_saati;
 import java.io.Serializable;
@@ -23,11 +24,14 @@ public class ihtiyac_saatiController implements Serializable{
     private List<ihtiyac_saati> ihList;
     private ihtiyac_saatiDAO ihdao;
     private ihtiyac_saati ih;
+    adresController ac = new adresController();
+    private List<adres> ad;
     private int a;
     
     public String listele(int a){
         this.a=a;
         this.ihList=this.getIhdao().getIhtiyacSaati(a);
+        this.ad= ac.listele(a);
         this.ih = new ihtiyac_saati();
         return "ihtiyacsaati";
     }
@@ -96,6 +100,14 @@ public class ihtiyac_saatiController implements Serializable{
 
     public void setA(int a) {
         this.a = a;
+    }
+
+    public List<adres> getAd() {
+        return ad;
+    }
+
+    public void setAd(List<adres> ad) {
+        this.ad = ad;
     }
     
     

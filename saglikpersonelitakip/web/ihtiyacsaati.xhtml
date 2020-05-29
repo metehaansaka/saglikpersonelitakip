@@ -64,9 +64,10 @@
 
         </div>
         <div class="container">
-            <div class="col-md-8">
-                <h:form>
-                    <div class="row">
+            <div class="row">
+                <div class="col-md-3">
+                    <h:form>
+
                         <div class="col-md-6">
                             <h:inputHidden value="#{bossaatController.bossaat.bossaatler_id}"/>
                             Gün : <h:inputText style="width:200px;" styleClass="form-control" value="#{ihtiyac_saatiController.ih.gun}"/>
@@ -76,7 +77,7 @@
                         <div class="col-md-6">
 
                             <h:form>
-                                <div class="btn-group" style="margin-left:-150px; margin-bottom: -50px;">
+                                <div class="btn-group mt-3">
                                     <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun!=null}" value="Düzenle" styleClass="btn btn-info" action="#{ihtiyac_saatiController.update}"  />
                                     <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun==null}" value="Ekle" styleClass="btn btn-success" action="#{ihtiyac_saatiController.create(ihtiyac_saatiController.ihList[0].hasta_id)}"  />
                                     <h:commandButton rendered="#{ihtiyac_saatiController.ih.gun!=null}" value="Formu Sıfırla" styleClass="btn btn-secondary" action="#{ihtiyac_saatiController.reset}"  />
@@ -84,8 +85,44 @@
                                 </div>
                             </h:form>
                         </div>
+
+                    </h:form>
+                </div>
+                <div class="col-md-9">
+                    <div class="col-md-8">
+                        <h:dataTable class="table mt-3" value="#{ihtiyac_saatiController.ad}" var="ad">
+                            <h:column>
+                                <f:facet name="header">adres id</f:facet>
+                                    #{ad.adres_id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">hasta id</f:facet>
+                                    #{ad.hasta_id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">adres</f:facet>
+                                <textarea disabled="disabled" rows="5" cols="40" >#{ad.adres}</textarea>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">SİL</f:facet>
+                                <h:form><h:commandButton value="sil" styleClass="btn btn-danger btn-sm" action="#{adresController.delete(ad.adres_id)}" /></h:form>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Düzenle</f:facet>
+                                <h:form>
+                                    <h:commandButton  styleClass="btn btn-info btn-sm" value="Düzenle" action="#{adresController.sec(ad)}"/>
+                                </h:form>
+                            </h:column>
+                        </h:dataTable>
                     </div>
-                </h:form>
+                    <div class="col-md-4">
+                        <h:form>
+                            Adres: <h:inputTextarea styleClass="form-control" value="#{adresController.a.adres}" />
+                            <h:commandButton rendered="#{adresController.a.adres!=null}" value="Düzenle" styleClass="btn btn-info btn-sm" action="#{adresController.update(ihtiyac_saatiController.ihList[0].hasta_id)}"/>
+                            <h:commandButton value="EKLE" styleClass="btn btn-success btn-sm" action="#{adresController.insert(ihtiyac_saatiController.ihList[0].hasta_id)}"/>
+                        </h:form>  
+                    </div>
+                </div>
             </div>
         </div>
 

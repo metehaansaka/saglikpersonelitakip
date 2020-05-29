@@ -1,6 +1,7 @@
 package dao;
 
 import entity.bossaatler;
+import entity.hasta_kayıt;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +13,23 @@ import java.util.logging.Logger;
 import util.DBConnection;
 
 public class bossaatlerDAO {
-
+    
+    public hasta_kayıt getById(int id){
+        hasta_kayıt hkayit=null;
+        DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try{
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("Select * from hasta_kayit where hasta_id=" + id);
+            rs.next();
+            hkayit = new hasta_kayıt(rs.getInt("hasta_id"),rs.getString("hasta_ad"),rs.getString("hasta_soyad"),rs.getString("hasta_aciklama"));
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return hkayit;
+    }
+    
     public List<bossaatler> getBossaatlerr(int a) {
         List<bossaatler> csaat = new ArrayList();
         DBConnection db = new DBConnection();
