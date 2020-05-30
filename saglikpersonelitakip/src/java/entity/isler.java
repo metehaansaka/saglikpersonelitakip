@@ -12,23 +12,23 @@ package entity;
 public class isler {
     private int is_id;
     private int personel_id;
-    private int hasta_id;
+    private hasta_kayıt hasta;
     private String is_yapilan;
     private String ucret;
     private String tarih;
 
     @Override
     public String toString() {
-        return "isler{" + "is_id=" + is_id + ", personel_id=" + personel_id + ", hasta_id=" + hasta_id + ", is_yapilan=" + is_yapilan + ", ucret=" + ucret + ", tarih=" + tarih + '}';
+        return "isler{" + "is_id=" + is_id + ", personel_id=" + personel_id + ", hasta_id=" + hasta.getHasta_id() + ", is_yapilan=" + is_yapilan + ", ucret=" + ucret + ", tarih=" + tarih + '}';
     }
 
     public isler() {
     }
 
-    public isler(int is_id, int personel_id, int hasta_id, String is_yapilan, String ucret, String tarih) {
+    public isler(int is_id, int personel_id, hasta_kayıt hasta, String is_yapilan, String ucret, String tarih) {
         this.is_id = is_id;
         this.personel_id = personel_id;
-        this.hasta_id = hasta_id;
+        this.hasta = hasta;
         this.is_yapilan = is_yapilan;
         this.ucret = ucret;
         this.tarih = tarih;
@@ -53,13 +53,17 @@ public class isler {
         this.personel_id = personel_id;
     }
 
-    public int getHasta_id() {
-        return hasta_id;
+    public hasta_kayıt getHasta() {
+        if (this.hasta==null) {
+            this.hasta=new hasta_kayıt();
+        }
+        return hasta;
     }
 
-    public void setHasta_id(int hasta_id) {
-        this.hasta_id = hasta_id;
+    public void setHasta(hasta_kayıt hasta) {
+        this.hasta = hasta;
     }
+
 
     public String getIs_yapilan() {
         return is_yapilan;

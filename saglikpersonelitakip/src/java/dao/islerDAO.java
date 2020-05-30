@@ -24,9 +24,23 @@ import util.DBConnection;
  * @author Metehan
  */
 public class islerDAO {
+    
+    private bossaatlerDAO bdao;
 
+    public bossaatlerDAO getBdao() {
+        if (this.bdao==null) {
+            this.bdao= new bossaatlerDAO();
+        }
+        return bdao;
+    }
+
+    public void setBdao(bossaatlerDAO bdao) {
+        this.bdao = bdao;
+    }
+    
+    
     public List<isler> getIsler(int a) {
-
+        
         List<isler> ilist = new ArrayList();
         DBConnection db = new DBConnection();
         Connection c = db.connect();
@@ -34,7 +48,8 @@ public class islerDAO {
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery("select * from isler where personel_id=" + a);
             while (rs.next()) {
-                isler i = new isler(rs.getInt("is_id"), rs.getInt("personel_id"), rs.getInt("hasta_id"), rs.getString("is_yapilan"), rs.getString("ucret"), rs.getString("tarih"));
+                hasta_kayıt hasta =this.getBdao().getById(rs.getInt("hasta_id")) ;
+                isler i = new isler(rs.getInt("is_id"), rs.getInt("personel_id"), hasta, rs.getString("is_yapilan"), rs.getString("ucret"), rs.getString("tarih"));
                 ilist.add(i);
             }
         } catch (SQLException ex) {
@@ -86,7 +101,7 @@ public class islerDAO {
         Connection c = db.connect();
         try {
             Statement st = c.createStatement();
-            st.executeUpdate("insert into isler (personel_id,hasta_id,is_yapilan,ucret,tarih) values ('" + id + "','" + i.getHasta_id()
+            st.executeUpdate("insert into isler (personel_id,hasta_id,is_yapilan,ucret,tarih) values ('" + id + "','" + i.getHasta().getHasta_id()
                     + "','" + i.getIs_yapilan() + "','" + i.getUcret() + "','" + i.getTarih() + "')");
         } catch (SQLException ex) {
             Logger.getLogger(islerDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,7 +113,7 @@ public class islerDAO {
         Connection c = db.connect();
          try {
             Statement st = c.createStatement();
-            st.executeUpdate("update isler set hasta_id='"+i.getHasta_id()+"', is_yapilan='"+i.getIs_yapilan()+"',ucret="
+            st.executeUpdate("update isler set hasta_id='"+i.getHasta().getHasta_id()+"', is_yapilan='"+i.getIs_yapilan()+"',ucret="
                     + "'"+i.getUcret()+"',tarih='"+i.getTarih()+"' where is_id="+i.getIs_id());
         } catch (SQLException ex) {
             Logger.getLogger(islerDAO.class.getName()).log(Level.SEVERE, null, ex);

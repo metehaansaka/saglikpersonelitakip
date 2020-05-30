@@ -15,7 +15,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="n avbarSupportedContent">
                     <h:form>
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
@@ -126,7 +126,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">Hastaya Git</f:facet>
-                                #{bossaatController.getById(ilist.hasta_id).hasta_ad}
+                                #{bossaatController.getById(ilist.hasta.hasta_id).hasta_ad}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Yapılan İş</f:facet>
@@ -150,8 +150,8 @@
                 </div>
                 <div style="margin-left: 100px;" class="col-md-3">
                     <h:form>
-                        <h:selectOneMenu value="#{islerController.i.hasta_id}">
-                            <f:selectItems value="#{hasta_kayıtController.hkList}" var="c" itemLabel="#{c.hasta_ad}" itemValue="#{c.hasta_id}"/>
+                        <h:selectOneMenu value="#{islerController.i.hasta}" converter="hastaConverter">
+                            Hasta: <f:selectItems value="#{hasta_kayıtController.hkList}" var="c" itemLabel="#{c.hasta_ad}" itemValue="#{c}"/>
                         </h:selectOneMenu>
                         <br></br>
                         <br></br>

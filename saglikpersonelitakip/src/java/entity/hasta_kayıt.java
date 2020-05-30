@@ -72,4 +72,29 @@ public class hasta_kayıt {
         this.hasta_aciklama = hasta_acıklama;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + this.hasta_id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final hasta_kayıt other = (hasta_kayıt) obj;
+        if (this.hasta_id != other.hasta_id) {
+            return false;
+        }
+        return true;
+    }
+    
 }
