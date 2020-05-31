@@ -22,14 +22,14 @@ import util.DBConnection;
  */
 public class personellerDAO {
 
-    public List<personeller> getPersonell() {
+    public List<personeller> getPersonell(int page,int pageSize) {
         List<personeller> plist = new ArrayList();
         DBConnection db = new DBConnection();
         Connection c = db.connect();
-
+        int start = (page-1)*pageSize;
         try {
             Statement st = c.createStatement();
-            ResultSet rs = st.executeQuery("Select * from personeller");
+            ResultSet rs = st.executeQuery("Select * from personeller order by personel_id asc limit "+start+","+pageSize);
             while (rs.next()) {
                 personeller p = new personeller(rs.getInt("personel_id"), rs.getString("personel_adsoyad"), rs.getString("personel_telefon"),
                         rs.getString("personel_cinsiyet"), rs.getString("personel_brans"));
@@ -40,6 +40,22 @@ public class personellerDAO {
         }
 
         return plist;
+    }
+    
+    public int count() {
+        int count=0;
+        DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("Select count(personel_id) as personel_count from personeller");
+            rs.next();
+            count=rs.getInt("personel_count");
+        } catch (SQLException ex) {
+            Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
     }
 
     public void insert(personeller personel) {
