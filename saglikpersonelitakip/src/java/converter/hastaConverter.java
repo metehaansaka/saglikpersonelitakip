@@ -16,13 +16,13 @@ import javax.faces.convert.FacesConverter;
  *
  * @author Metehan
  */
-@FacesConverter(value="hastaConverter")  
-public class hastaConverter implements Converter{
-    
+@FacesConverter(value = "hastaConverter")
+public class hastaConverter implements Converter {
+
     private bossaatlerDAO bdao;
 
     public bossaatlerDAO getBdao() {
-        if (this.bdao==null) {
+        if (this.bdao == null) {
             this.bdao = new bossaatlerDAO();
         }
         return bdao;
@@ -32,18 +32,15 @@ public class hastaConverter implements Converter{
         this.bdao = bdao;
     }
 
-   
-    
-    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return this.bdao.getById(Integer.valueOf(value));
+        return this.getBdao().getById(Integer.valueOf(value));
     }
 
     @Override
     public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-        hasta_kayıt h = (hasta_kayıt)arg2;
+        hasta_kayıt h = (hasta_kayıt) arg2;
         return String.valueOf(h.getHasta_id());
     }
-    
+
 }

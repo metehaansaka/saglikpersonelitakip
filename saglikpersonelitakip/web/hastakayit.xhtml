@@ -35,7 +35,8 @@
         </nav>
         <div class="row">
             <div class="col-md-8">
-                <h:dataTable class="table table-striped ml-5 mt-3" value="#{hasta_kayıtController.hkList}" var="hklist">
+               
+                <h:dataTable id="hastalar-tablosu" class="table table-striped ml-5 mt-3" value="#{hasta_kayıtController.hkList}" var="hklist">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
                             #{hklist.hasta_id}
@@ -72,6 +73,14 @@
                         </h:form>
                     </h:column>
                 </h:dataTable>
+                 <div class="btn-group ml-5">
+                    <h:commandButton value="geri" action="#{hasta_kayıtController.geri()}" styleClass="btn btn-outline-info" >
+                        <f:ajax execute="@this" render="hastalar-tablosu" />
+                    </h:commandButton>
+                    <h:commandButton value="ileri" action="#{hasta_kayıtController.ileri()}" styleClass="btn btn-outline-info" >
+                        <f:ajax execute="@this" render="hastalar-tablosu" />
+                    </h:commandButton>
+                </div>
             </div>
             <div class="col-md-3 ml-5">
                 <h3 style="color: green; text-align: center; " class="mt-3 mb">Yeni Kayıt Ekle</h3>

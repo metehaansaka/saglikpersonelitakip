@@ -22,15 +22,15 @@ import util.DBConnection;
  */
 public class hasta_kayıtDAO {
 
-    public List<hasta_kayıt> getHastaKayit() {
+    public List<hasta_kayıt> getHastaKayit(int page, int pageSize) {
         List<hasta_kayıt> hlist = new ArrayList();
         DBConnection db = new DBConnection();
         Connection con = db.connect();
         String personelBilgisi = "";
         String hasta_kayıt = null;
-
+        int start = (page-1)*pageSize;
         try {
-            PreparedStatement statement = (PreparedStatement) con.prepareStatement("SELECT*FROM hasta_kayit");
+            PreparedStatement statement = (PreparedStatement) con.prepareStatement("SELECT*FROM hasta_kayit order by hasta_id asc limit "+start+","+pageSize);
             ResultSet resulset = statement.executeQuery();
             while (resulset.next()) {
                 hasta_kayıt hasta = new hasta_kayıt(resulset.getInt("hasta_id"), resulset.getString("hasta_ad"), resulset.getString("hasta_soyad"), resulset.getString("hasta_aciklama"));
@@ -40,6 +40,22 @@ public class hasta_kayıtDAO {
             System.out.println("Hata:" + e);
         }
         return hlist;
+
+    }
+    
+    public int count() {
+        int count = 0;
+        DBConnection db = new DBConnection();
+        Connection con = db.connect();
+        try {
+            PreparedStatement statement = (PreparedStatement) con.prepareStatement("select count(hasta_id) as hasta_count from hasta_kayit");
+            ResultSet resulset = statement.executeQuery();
+            resulset.next();
+            count = resulset.getInt("hasta_count");
+        } catch (SQLException e) {
+            System.out.println("Hata:" + e);
+        }
+        return count;
 
     }
 

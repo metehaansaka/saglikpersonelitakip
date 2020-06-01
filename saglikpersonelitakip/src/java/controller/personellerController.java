@@ -8,7 +8,6 @@ package controller;
 import dao.personellerDAO;
 import entity.personeller;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -51,14 +50,12 @@ public class personellerController implements Serializable {
         return "personeller";
     }
 
-    public String delete(personeller p) {
+    public void delete(personeller p) {
         this.getPdao().delete(p);
-        return "personeller";
     }
 
-    public String select(personeller p) {
+    public void select(personeller p) {
         this.personel = p;
-        return "personeller";
     }
 
     public String update() {

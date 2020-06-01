@@ -35,16 +35,20 @@
         </nav>
         <div class="row">
             <div class="col-md-8">
-                <h:form>
+                <h:form id="page-form">
                     <center>
                         #{personellerController.pageCount} Sayfadan #{personellerController.page} Gösteriliyor.&nbsp;
                         <div class="btn-group">
-                            <h:commandButton action="#{personellerController.geri()}" value="geri" class="btn btn-sm btn-outline-dark"/>
-                            <h:commandButton action="#{personellerController.ileri()}" value="ileri" class="btn btn-sm btn-outline-dark"/>
+                            <h:commandButton action="#{personellerController.geri()}" value="geri" class="btn btn-sm btn-outline-dark">
+                                <f:ajax execute="@this" render="page-form personel-table" />
+                            </h:commandButton>
+                            <h:commandButton action="#{personellerController.ileri()}" value="ileri" class="btn btn-sm btn-outline-dark">
+                                <f:ajax execute="@this" render="page-form personel-table" />
+                            </h:commandButton>
                         </div>
                     </center>
                 </h:form>
-                <h:dataTable class="table table-striped ml-5 mt-3" value="#{personellerController.pplist}" var="pplist">
+                <h:dataTable id="personel-table" class="table table-striped ml-5 mt-3" value="#{personellerController.pplist}" var="pplist">
                     <h:column>
                         <f:facet name="header">ID</f:facet>
                             #{pplist.personel_id}
@@ -55,7 +59,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Branş</f:facet>
-                            #{pplist.personel_brans}
+                            #{pplist.brans.brans}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Cinsiyet</f:facet>
@@ -75,7 +79,9 @@
                     <h:column>
                         <f:facet name="header">Seç</f:facet>
                         <h:form>
-                            <h:commandButton action="#{personellerController.select(pplist)}" styleClass="btn btn-secondary btn-sm"  value="Seç"/>
+                            <h:commandButton action="#{personellerController.select(pplist)}" styleClass="btn btn-secondary btn-sm"  value="Seç">
+                            <f:ajax execute="@this" render="personel-form" />
+                            </h:commandButton>
                         </h:form>
                     </h:column>
                     <h:column>
@@ -88,15 +94,16 @@
             </div>
             <div class="col-md-3 ml-5">
                 <h3 style="color: green; text-align: center; " class="mt-3 mb">Yeni Kayıt Ekle</h3>
-                <h:form enctype="multipart/form-data">
+                <h:form enctype="multipart/form-data" id="personel-form">
                     <div class="row my-3">
                         <label for="persone_adsoyad">Ad Soyad:</label>
                         <h:inputText value="#{personellerController.personel.persone_adsoyad}" class="form-control" id="persone_adsoyad" />
                     </div>  
                     <div class="row my-3">
-                        <label for="persone_brans">Branş:</label>
-                        <h:inputText value="#{personellerController.personel.personel_brans}" class="form-control" id="persone_brans" />
-                    </div>  
+                        <h:selectOneMenu value="#{personellerController.personel.brans}" converter="bransConverter">
+                            Branş: <f:selectItems value="#{bransController.bransList}" var="b" itemLabel="#{b.brans}" itemValue="#{p}"/>
+                        </h:selectOneMenu>
+                        </div>  
                     <div class="row my-3">
                         <label for="persone_cinsiyet">Cinsiyet:</label>
                         <h:inputText value="#{personellerController.personel.personel_cinsiyet}" class="form-control" id="persone_cinsiyet" />

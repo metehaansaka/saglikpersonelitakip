@@ -81,7 +81,7 @@
                     <h:column>
                         <f:facet name="header">Yaptığı İşler</f:facet>
                         <h:form>
-                            <h:commandButton  styleClass="btn btn-info btn-light" value="GÖR" action="#{islerController.Listele(bossaatController.saatlist[0].personel_id)}"/>
+                            <h:commandButton  styleClass="btn btn-info btn-light" value="GÖR" action="#{islerController.Listele(saatlist.personel_id)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
@@ -155,6 +155,7 @@
                         </h:selectOneMenu>
                         <br></br>
                         <br></br>
+                        <h:inputHidden value="#{islerController.i.personel_id}"/>
                         Yapılan İş: <h:inputText styleClass="form-control my-3" value="#{islerController.i.is_yapilan}" />
                         Ücret: <h:inputText styleClass="form-control my-3" value="#{islerController.i.ucret}" />
                         Tarih: <h:inputText styleClass="form-control my-3" value="#{islerController.i.tarih}" />
