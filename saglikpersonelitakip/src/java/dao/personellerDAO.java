@@ -6,6 +6,7 @@
 package dao;
 
 import entity.brans;
+import entity.file;
 import entity.personeller;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -22,11 +23,11 @@ import util.DBConnection;
  * @author Metehan
  */
 public class personellerDAO {
-    
+
     private bransDAO bDAO;
 
     public bransDAO getbDAO() {
-        if (this.bDAO==null) {
+        if (this.bDAO == null) {
             this.bDAO = new bransDAO();
         }
         return bDAO;
@@ -35,17 +36,15 @@ public class personellerDAO {
     public void setbDAO(bransDAO bDAO) {
         this.bDAO = bDAO;
     }
-    
-    
-    
-    public List<personeller> getPersonell(int page,int pageSize) {
+
+    public List<personeller> getPersonell(int page, int pageSize) {
         List<personeller> plist = new ArrayList();
         DBConnection db = new DBConnection();
         Connection c = db.connect();
-        int start = (page-1)*pageSize;
+        int start = (page - 1) * pageSize;
         try {
             Statement st = c.createStatement();
-            ResultSet rs = st.executeQuery("Select * from personeller order by personel_id asc limit "+start+","+pageSize);
+            ResultSet rs = st.executeQuery("Select * from personeller order by personel_id asc limit " + start + "," + pageSize);
             while (rs.next()) {
                 brans b = this.getbDAO().getById(rs.getInt("personel_brans"));
                 personeller p = new personeller(rs.getInt("personel_id"), rs.getString("personel_adsoyad"), rs.getString("personel_telefon"),
@@ -58,23 +57,38 @@ public class personellerDAO {
 
         return plist;
     }
-    
+
     public int count() {
-        int count=0;
+        int count = 0;
         DBConnection db = new DBConnection();
         Connection c = db.connect();
         try {
             Statement st = c.createStatement();
             ResultSet rs = st.executeQuery("Select count(personel_id) as personel_count from personeller");
             rs.next();
-            count=rs.getInt("personel_count");
+            count = rs.getInt("personel_count");
         } catch (SQLException ex) {
             Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return count;
     }
-
+    
+    public int lastID(){
+        int id = 0;
+        DBConnection db = new DBConnection();
+        Connection c = db.connect();
+        try {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("Select personel_id from personeller order by personel_id desc");
+            rs.next();
+            id = rs.getInt("personel_id");
+        } catch (SQLException ex) {
+            Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
     public void insert(personeller personel) {
         DBConnection db = new DBConnection();
         Connection c = db.connect();
@@ -99,13 +113,13 @@ public class personellerDAO {
     }
 
     public void update(personeller personel) {
-         DBConnection db = new DBConnection();
+        DBConnection db = new DBConnection();
         Connection c = db.connect();
         try {
             Statement st = c.createStatement();
-            st.executeUpdate("update personeller set personel_adsoyad='"+personel.getPersone_adsoyad()+"',"
-            + "personel_telefon='"+personel.getPersonel_telefon()+"',personel_cinsiyet='"+personel.getPersonel_cinsiyet()+"',"
-            + "personel_brans='"+personel.getBrans().getBrans_id()+"' where personel_id=" + personel.getPersonel_id());
+            st.executeUpdate("update personeller set personel_adsoyad='" + personel.getPersone_adsoyad() + "',"
+                    + "personel_telefon='" + personel.getPersonel_telefon() + "',personel_cinsiyet='" + personel.getPersonel_cinsiyet() + "',"
+                    + "personel_brans='" + personel.getBrans().getBrans_id() + "' where personel_id=" + personel.getPersonel_id());
         } catch (SQLException ex) {
             Logger.getLogger(personellerDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

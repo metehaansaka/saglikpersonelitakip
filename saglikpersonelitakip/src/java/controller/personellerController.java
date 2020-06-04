@@ -66,13 +66,14 @@ public class personellerController implements Serializable {
 
     public String create() {
         this.getPdao().insert(this.personel);
+        int temp=this.getPdao().lastID();
         fileController fc = new fileController();
-        fc.upload(this.doc);
+        fc.upload(this.doc,temp);
         return "personeller";
     }
 
     public List<personeller> getPplist() {
-        this.pplist = this.getPdao().getPersonell(page, pageSize);
+        this.pplist = this.getPdao().getPersonell(this.getPage(),this.getPageSize());
         return pplist;
     }
 
@@ -119,7 +120,7 @@ public class personellerController implements Serializable {
     }
 
     public int getPageCount() {
-        this.pageCount = (int) Math.ceil(this.getPdao().count() / (double) this.pageSize);
+        this.pageCount = (int) Math.ceil(this.getPdao().count() / (double) this.getPageSize());
         return pageCount;
     }
 

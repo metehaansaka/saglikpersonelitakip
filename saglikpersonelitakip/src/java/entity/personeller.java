@@ -28,14 +28,10 @@ public class personeller {
         this.brans = brans;
     }
 
-    
-    
     @Override
     public String toString() {
         return "personeller{" + "personel_id=" + personel_id + ", persone_adsoyad=" + persone_adsoyad + ", personel_telefon=" + personel_telefon + ", personel_cinsiyet=" + personel_cinsiyet + ", brans=" + brans + '}';
     }
-    
-    
 
     public int getPersonel_id() {
         return personel_id;
@@ -80,6 +76,10 @@ public class personeller {
         this.brans = brans;
     }
 
+    
+    
+    
+    
     
     
 }

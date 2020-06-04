@@ -71,6 +71,13 @@
                     </h:column>
 
                     <h:column>
+                        <f:facet name="header">Belge</f:facet>
+                        <h:panelGroup layout="block" rendered="#{fileController.getfList(pplist.personel_id)!=null}" >
+                            <h:graphicImage width="100" value="/file/#{fileController.getfList(pplist.personel_id)}" />
+                        </h:panelGroup>
+                    </h:column>
+
+                    <h:column>
                         <f:facet name="header">Müsait Saatleri</f:facet>
                         <h:form>
                             <center><h:commandButton action="#{bossaatController.listele(pplist.personel_id)}" styleClass="btn btn-info btn-sm"  value="GÖR"/></center>
@@ -80,7 +87,7 @@
                         <f:facet name="header">Seç</f:facet>
                         <h:form>
                             <h:commandButton action="#{personellerController.select(pplist)}" styleClass="btn btn-secondary btn-sm"  value="Seç">
-                            <f:ajax execute="@this" render="personel-form" />
+                                <f:ajax execute="@this" render="personel-form" />
                             </h:commandButton>
                         </h:form>
                     </h:column>
@@ -103,7 +110,7 @@
                         <h:selectOneMenu value="#{personellerController.personel.brans}" converter="bransConverter">
                             Branş: <f:selectItems value="#{bransController.bransList}" var="b" itemLabel="#{b.brans}" itemValue="#{p}"/>
                         </h:selectOneMenu>
-                        </div>  
+                    </div>  
                     <div class="row my-3">
                         <label for="persone_cinsiyet">Cinsiyet:</label>
                         <h:inputText value="#{personellerController.personel.personel_cinsiyet}" class="form-control" id="persone_cinsiyet" />
