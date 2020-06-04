@@ -13,11 +13,10 @@ public class file {
     private String filePath;
     private String fileName;
     private String fileType;
-
+    private int id;
+    
     public file() {
-    }
-    
-    
+    } 
     
     public String getFilePath() {
         return filePath;
@@ -42,5 +41,14 @@ public class file {
     public void setFileType(String fileType) {
         this.fileType = fileType;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     
 }

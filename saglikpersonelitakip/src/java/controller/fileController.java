@@ -35,6 +35,12 @@ public class fileController implements Serializable {
             InputStream input = dc.getInputStream();
             File f = new File(uploadTo+dc.getSubmittedFileName());
             Files.copy(input, f.toPath());
+            file = this.getFile();
+            file.setFilePath(f.getParent());
+            file.setFileName(f.getName());
+            file.setFileType(dc.getContentType());
+            this.getfDAO().insert(file);
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
