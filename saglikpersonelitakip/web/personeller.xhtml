@@ -104,11 +104,13 @@
                 <h:form enctype="multipart/form-data" id="personel-form">
                     <div class="row my-3">
                         <label for="persone_adsoyad">Ad Soyad:</label>
-                        <h:inputText value="#{personellerController.personel.persone_adsoyad}" class="form-control" id="persone_adsoyad" />
+                        <h:inputText value="#{personellerController.personel.persone_adsoyad}" validatorMessage="Ad Soyad 5 harften kısa olamaz" class="form-control" id="persone_adsoyad">
+                            <f:validateLength minimum="5" />
+                        </h:inputText>
                     </div>  
                     <div class="row my-3">
                         <h:selectOneMenu value="#{personellerController.personel.brans}" converter="bransConverter">
-                            Branş: <f:selectItems value="#{bransController.bransList}" var="b" itemLabel="#{b.brans}" itemValue="#{p}"/>
+                            Branş: <f:selectItems value="#{bransController.bransList}" var="b" itemLabel="#{b.brans}" itemValue="#{b}"/>
                         </h:selectOneMenu>
                     </div>  
                     <div class="row my-3">
@@ -117,7 +119,9 @@
                     </div>  
                     <div class="row my-3">
                         <label for="persone_telefon">Telefon:</label>
-                        <h:inputText value="#{personellerController.personel.personel_telefon}" class="form-control" id="persone_telefon" />
+                        <h:inputText value="#{personellerController.personel.personel_telefon}" class="form-control" id="persone_telefon" >
+                            <f:validator validatorId="validator"/>
+                        </h:inputText>
                     </div>
                     <div class="row my-3">
                         <label for="persone_telefon">Belge:</label>
